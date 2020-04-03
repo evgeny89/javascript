@@ -1,14 +1,13 @@
 "use strict";
 // задание №1
 let tempC = +prompt("Введите температуру:");
+if (isNaN(tempC)) tempC = 0;
 let tempF = (9 / 5) * tempC + 32;
 alert(tempF);
 
 // задание №2
-let name = null;
-let admin = null;
-name = "Василий";
-admin = name;
+let name = "Василий";
+let admin = name;
 console.log(admin);
 
 // задание №3
