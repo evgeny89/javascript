@@ -36,7 +36,7 @@ const post = {
             }
         },
     ]
-}
+};
 
 console.log(post.author);
 console.log(post.comments[0].rating.dislikes);
@@ -61,7 +61,7 @@ const products = [
 
 products.forEach(function (product) {
     product.price = product.price - (product.price * 15 / 100);
-})
+});
 
 console.log(products);
 
@@ -99,12 +99,7 @@ const products2 = [
  * @returns {boolean}
  */
 const getImg = (elem) => {
-    let res = ('photos' in elem) ? true : false;
-    if (res === true && elem.photos.length > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return 'photos' in elem && elem.photos.length > 0;
 };
 
 let arrToImg = products2.filter(getImg);
