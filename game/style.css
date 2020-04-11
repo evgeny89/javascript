@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    50% {
+        opacity: .3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    background-color: #17304B;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.squared-area {
+    padding: 10px;
+    border: 2px solid #fffa06;
+    border-radius: 10px;
+    display: grid;
+    grid-gap: 5px;
+}
+
+.square {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background: linear-gradient(1600deg, #FF00FF, #000099 125%);
+    transition: opacity .5s, background .6s;
+}
+
+.active {
+    animation: .6s linear 0s infinite blink;
+    background: linear-gradient(1600deg, #e1ff67, #f6d80c);
+}
