@@ -194,9 +194,14 @@ let counter = document.querySelector('.cart-icon');
 
 // считаем количество товара в корзине
 function setCounter() {
-    counter.dataset.count = Object.values(itemCart).reduce((a, b) => {
-        return a + b;
-    })
+    if (Object.keys(itemCart).length !== 0) {
+        counter.dataset.count = Object.values(itemCart).reduce((a, b) => {
+            return a + b;
+        })
+    } else {
+        counter.dataset.count = '0';
+        blockForCart.parentNode.style.visibility = 'hidden';
+    }
 }
 
 // блок в который будем заносить разметку корзины
@@ -246,7 +251,7 @@ function setBox(obj) {
 
 // по клику на корзину открываем и закрываем ее
 counter.addEventListener('click', () => {
-    if (blockForCart.parentNode.style.visibility === 'hidden') {
+    if (blockForCart.parentNode.style.visibility === 'hidden' || blockForCart.parentNode.style.visibility === '') {
         blockForCart.innerHTML = '';
         setBox(itemCart);
         blockForCart.parentNode.style.visibility = 'inherit';
@@ -261,16 +266,18 @@ let clearBox = document.querySelector('.btn-clear');
 clearBox.addEventListener('click', function () {
     blockForCart.innerHTML = '';
     document.getElementById('totalSum').innerText = '0';
-    counter.dataset.count = '0';
+    itemCart = {};
+    setCounter();
+    setBox(itemCart);
 });
 
 // изменение инпута
 blockForCart.addEventListener('change', function (e) {
     let getIdItem = e.target.nextElementSibling.children[1].dataset.del;
-    let currentValue = e.target.value;
-    itemCart[getIdItem] = currentValue;
+    itemCart[getIdItem] = e.target.value;
     blockForCart.innerHTML = '';
     setBox(itemCart);
+    setCounter();
 });
 
 // удаление элемента по клику на иконку...
@@ -280,5 +287,6 @@ blockForCart.addEventListener('click', function (e) {
         itemCart[currentValue] -= 1;
         blockForCart.innerHTML = '';
         setBox(itemCart);
+        setCounter();
     }
 });
