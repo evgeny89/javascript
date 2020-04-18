@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #2f43a5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.range {
+    position: relative;
+    width: 268px;
+    height: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 1px #0af1b8;
+}
+
+.min-range-item,
+.max-range-item {
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    left: 0;
+    top: -1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #aa0aa2;
+    box-shadow: 0 0 2px 1px #d9df1c;
+}
+
+.max-range-item {
+    left: 250px;
+}
