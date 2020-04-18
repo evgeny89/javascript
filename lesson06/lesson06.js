@@ -212,6 +212,11 @@ function setBox(obj) {
 
     for (let key in obj) {
 
+        if (itemCart[+key] < 1) {
+            delete  itemCart[+key];
+            continue;
+        }
+
         let item = product.find(item => item.id === +key);
 
         let sum = +item.price * itemCart[+key];
@@ -266,4 +271,14 @@ blockForCart.addEventListener('change', function (e) {
     itemCart[getIdItem] = currentValue;
     blockForCart.innerHTML = '';
     setBox(itemCart);
+});
+
+// удаление элемента по клику на иконку...
+blockForCart.addEventListener('click', function (e) {
+    if (e.target.dataset.del !== undefined) {
+        let currentValue = +e.target.dataset.del;
+        itemCart[currentValue] -= 1;
+        blockForCart.innerHTML = '';
+        setBox(itemCart);
+    }
 });
