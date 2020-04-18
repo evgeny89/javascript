@@ -259,6 +259,11 @@ clearBox.addEventListener('click', function () {
     counter.dataset.count = '0';
 });
 
+// изменение инпута
 blockForCart.addEventListener('change', function (e) {
-    console.log(e.target.nextElementSibling.children[1].dataset.del);
+    let getIdItem = e.target.nextElementSibling.children[1].dataset.del;
+    let currentValue = e.target.value;
+    itemCart[getIdItem] = currentValue;
+    blockForCart.innerHTML = '';
+    setBox(itemCart);
 });
