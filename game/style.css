@@ -3,23 +3,12 @@
     padding: 0;
 }
 
-@keyframes blink {
-    from {
-        opacity: 1;
-    }
-    50% {
-        opacity: .3;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 .container {
     background-color: #17304B;
     height: 100vh;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -35,11 +24,24 @@
     width: 30px;
     height: 30px;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
     background: linear-gradient(1600deg, #FF00FF, #000099 125%);
     transition: opacity .5s, background .6s;
 }
 
+.square i {
+    font-size: 24px;
+    color: #f6d80c;
+}
+
 .active {
-    animation: .6s linear 0s infinite blink;
     background: linear-gradient(1600deg, #e1ff67, #f6d80c);
+}
+
+h4 {
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #f6d80c;
+    padding-bottom: 20px;
 }
