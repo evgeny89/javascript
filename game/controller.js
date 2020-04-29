@@ -2,28 +2,25 @@
 
 // слушатель нажатия клавиш навигации, меняет положение активного блока
 document.addEventListener('keydown', function (event) {
-    newGame.setDeactivate();
 
     switch (event.code) {
         case 'Numpad8':
         case 'ArrowUp':
-            newGame.changeUserY += -1;
+            newGame.lastTouchY = '-1';
             break;
         case 'Numpad2':
         case 'ArrowDown':
-            newGame.changeUserY += 1;
+            newGame.lastTouchY = '1';
             break;
         case 'Numpad6':
         case 'ArrowRight':
-            newGame.changeUserX += 1;
+            newGame.lastTouchX = '1';
             break;
         case 'Numpad4':
         case 'ArrowLeft':
-            newGame.changeUserX += -1;
+            newGame.lastTouchX = '-1';
             break;
     }
-
-    newGame.setActive();
 }, false);
 
 // touch управление
@@ -42,17 +39,19 @@ touchArea.addEventListener("touchend", function (e) {
     endX = Math.round(e.changedTouches[0].clientX);
     endY = Math.round(e.changedTouches[0].clientY);
 
-    console.log(endY);
-
-    newGame.setDeactivate();
-
     if (Math.abs(endX - startX) > Math.abs(endY - startY)) {
-        startX > endX ? (newGame.changeUserX += -1) : (newGame.changeUserX += 1);
+        if (startX > endX) {
+            newGame.lastTouchX = '-1';
+        } else {
+            newGame.lastTouchX = '1';
+        }
     }
 
     if (Math.abs(endX - startX) < Math.abs(endY - startY)) {
-        startY > endY ? (newGame.changeUserX += -1) : (newGame.changeUserX += 1);
+        if (startY > endY) {
+            newGame.lastTouchY = '-1';
+        } else {
+            newGame.lastTouchY = '1';
+        }
     }
-
-    newGame.setActive();
 });
